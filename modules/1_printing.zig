@@ -26,10 +26,12 @@ pub fn printTopic() void {
     assert(optional_value != null);
     print("Optional 2, type={}, value={?s}\n", .{ @TypeOf(optional_value), optional_value });
 
-    var number_or_error: anyerror!i32 = error.ArgNotFound;
-    // Print {!} is specifier for errors
-    print("Optional 3, type={}, value={!}\n", .{ @TypeOf(number_or_error), number_or_error });
+    {
+        var number_or_error: anyerror!i32 = error.ArgNotFound;
+        // Print {!} is specifier for errors
+        print("Optional 3, type={}, value={!}\n", .{ @TypeOf(number_or_error), number_or_error });
 
-    number_or_error = 1234;
-    print("Optional 4, type={}, value={!}\n", .{ @TypeOf(number_or_error), number_or_error });
+        number_or_error = 1234;
+        print("Optional 4, type={}, value={!}\n", .{ @TypeOf(number_or_error), number_or_error });
+    }
 }

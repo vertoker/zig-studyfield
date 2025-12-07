@@ -1,10 +1,20 @@
 const std = @import("std");
 
+const ModulesNames = [_][]const u8{
+    "1_printing",
+    "2_strings",
+    "3_undefined",
+    "4_testing",
+};
+
 pub fn build(b: *std.Build) void {
     const appName = "documentation_testfield";
 
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
+
+    const run_step = b.step("run", "Run the app");
+    const test_step = b.step("test", "Run tests");
 
     //var modules: [ModulesNames.len]*std.Build.Module = &.{};
     var imports: [ModulesNames.len]std.Build.Module.Import = undefined;
@@ -24,6 +34,13 @@ pub fn build(b: *std.Build) void {
         module.addIncludePath(b.path(C_ROOT_DIR));
 
         imports[i] = .{ .name = moduleName, .module = module };
+
+        const mod_tests = b.addTest(.{
+            .root_module = module,
+        });
+
+        const run_mod_tests = b.addRunArtifact(mod_tests);
+        test_step.dependOn(&run_mod_tests.step);
     }
 
     const exe = b.addExecutable(.{
@@ -36,15 +53,11 @@ pub fn build(b: *std.Build) void {
             .imports = &imports,
         }),
     });
-
-    //exe.addIncludePath(.{ .path = "modules/" });
-    //exe.root_module.addCSourceFile(.{ .file = b.path("test.c"), .flags = &.{"-std=c99"} });
-    //exe.root_module.addObject(obj);
-    //exe.root_module.linkLibrary(lib);
+    const exe_tests = b.addTest(.{
+        .root_module = exe.root_module,
+    });
 
     b.installArtifact(exe);
-
-    const run_step = b.step("run", "Run the app");
 
     const run_cmd = b.addRunArtifact(exe);
     run_step.dependOn(&run_cmd.step);
@@ -54,6 +67,10 @@ pub fn build(b: *std.Build) void {
     if (b.args) |args| {
         run_cmd.addArgs(args);
     }
+
+    // Tests
+    const run_exe_tests = b.addRunArtifact(exe_tests);
+    test_step.dependOn(&run_exe_tests.step);
 }
 
 fn addModule(name: []const u8, path: []const u8, b: *std.Build, target: ?std.Build.ResolvedTarget, optimize: ?std.builtin.OptimizeMode) *std.Build.Module {
@@ -65,12 +82,6 @@ fn addModule(name: []const u8, path: []const u8, b: *std.Build, target: ?std.Bui
     });
     return mod;
 }
-
-const ModulesNames = [_][]const u8{
-    "1_printing",
-    "2_strings",
-    "3_undefined",
-};
 
 const C_ROOT_DIR = "include/";
 const C_CORE_FILES = .{
