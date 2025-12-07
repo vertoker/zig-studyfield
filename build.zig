@@ -2,21 +2,29 @@ const std = @import("std");
 
 pub fn build(b: *std.Build) void {
     const appName = "documentation_testfield";
-    const printingName = "printing";
-    const stringsName = "strings";
 
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const printingModule = addModule(printingName, "modules/printing.zig", b, target, optimize);
-    const stringsModule = addModule(stringsName, "modules/strings.zig", b, target, optimize);
+    //var modules: [ModulesNames.len]*std.Build.Module = &.{};
+    var imports: [ModulesNames.len]std.Build.Module.Import = undefined;
 
-    stringsModule.addCSourceFiles(.{
-        .root = b.path(C_ROOT_DIR),
-        .files = &(C_CORE_FILES),
-        .flags = &C_FLAGS,
-    });
-    stringsModule.addIncludePath(b.path(C_ROOT_DIR));
+    for (0..ModulesNames.len) |i| {
+        var buffer: [100]u8 = undefined;
+        const moduleName = ModulesNames[i];
+
+        const path = std.fmt.bufPrint(&buffer, "modules/{s}.zig", .{moduleName}) catch unreachable;
+        const module = addModule(moduleName, path, b, target, optimize);
+
+        module.addCSourceFiles(.{
+            .root = b.path(C_ROOT_DIR),
+            .files = &(C_CORE_FILES),
+            .flags = &C_FLAGS,
+        });
+        module.addIncludePath(b.path(C_ROOT_DIR));
+
+        imports[i] = .{ .name = moduleName, .module = module };
+    }
 
     const exe = b.addExecutable(.{
         .name = appName,
@@ -25,10 +33,7 @@ pub fn build(b: *std.Build) void {
             .link_libc = true,
             .target = target,
             .optimize = optimize,
-            .imports = &.{
-                .{ .name = printingName, .module = printingModule },
-                .{ .name = stringsName, .module = stringsModule },
-            },
+            .imports = &imports,
         }),
     });
 
@@ -61,15 +66,16 @@ fn addModule(name: []const u8, path: []const u8, b: *std.Build, target: ?std.Bui
     return mod;
 }
 
-const C_ROOT_DIR = "include/";
-
-const C_CORE_FILES = .{
-    //"utils.h",
-    "utils.c",
+const ModulesNames = [_][]const u8{
+    "1_printing",
+    "2_strings",
+    "3_undefined",
 };
 
-const C_LIB_FILES = .{};
-
+const C_ROOT_DIR = "include/";
+const C_CORE_FILES = .{
+    "utils.c",
+};
 const C_FLAGS = .{
     "-Wall",
     "-O2",

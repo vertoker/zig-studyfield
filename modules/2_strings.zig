@@ -17,6 +17,7 @@ pub fn printTopic() void {
     print("{c}, ", .{bytes[1]});
     print("{d}\n", .{bytes[5]}); // null-terminated
 
+    // can be replaced without C: https://github.com/ziglang/zig/issues/18229
     set_console_output_cp();
 
     print("{}, ", .{'e' == '\x65'});
@@ -35,7 +36,7 @@ pub fn printTopic() void {
 
 // https://ssojet.com/character-encoding-decoding/utf-16-in-zig/
 fn printRus() void {
-    const bytes_utf8 = "Привет";
+    const bytes_utf8 = "Привет\n";
     var utf16_buffer: [100]u16 = undefined;
 
     const utf16_len = std.unicode.utf8ToUtf16Le(utf16_buffer[0..], bytes_utf8) catch 0;
