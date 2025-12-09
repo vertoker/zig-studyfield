@@ -5,6 +5,8 @@ const ModulesNames = [_][]const u8{
     "2_strings",
     "3_undefined",
     "4_testing",
+    "5_numbers",
+    "6_arrays",
 };
 
 pub fn build(b: *std.Build) void {

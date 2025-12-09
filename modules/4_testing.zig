@@ -2,7 +2,7 @@ const std = @import("std");
 const builtin = @import("builtin");
 
 pub fn printTopic() void {
-    std.debug.print("Is a test build? - {}", .{builtin.is_test});
+    std.debug.print("Is a test build? - {}\n", .{builtin.is_test});
 }
 // zig build test --summary all
 
@@ -45,4 +45,20 @@ fn concat(allocator: std.mem.Allocator, a: []const u8, b: []const u8) ![]u8 {
     @memcpy(result[0..a.len], a);
     @memcpy(result[a.len..], b);
     return result;
+}
+
+// TODO move to future concurrency module
+test "thread local storage" {
+    const thread1 = try std.Thread.spawn(.{}, testTls, .{});
+    const thread2 = try std.Thread.spawn(.{}, testTls, .{});
+    testTls();
+    thread1.join();
+    thread2.join();
+}
+
+threadlocal var x: i32 = 1234;
+fn testTls() void {
+    std.testing.assert(x == 1234);
+    x += 1;
+    std.testing.assert(x == 1235);
 }
