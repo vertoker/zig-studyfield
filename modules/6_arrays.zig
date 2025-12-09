@@ -26,7 +26,7 @@ pub fn printTopic() void {
 
     // Multidimensional array (nesting arrays)
 
-    const mat4x5 = [4][5]f32{
+    const mat4x5 = [_][5]f32{
         [_]f32{ 1.0, 0.0, 0.0, 0.0, 0.0 },
         [_]f32{ 0.0, 1.0, 0.0, 1.0, 0.0 },
         [_]f32{ 0.0, 0.0, 1.0, 0.0, 0.0 },
@@ -46,4 +46,11 @@ pub fn printTopic() void {
 
     const all_zero: [4][5]f32 = .{.{0} ** 5} ** 4;
     std.debug.assert(all_zero[0][0] == 0);
+
+    // null-terminated array (special for C-stirngs)
+    const array2 = [_:0]u8{ 1, 2, 3, 4 };
+
+    std.debug.assert(@TypeOf(array2) == [4:0]u8);
+    std.debug.assert(array2.len == 4); // len is 4
+    std.debug.assert(array2[4] == 0); // but allocated 5 symbols with end symbol = 0
 }

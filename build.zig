@@ -7,6 +7,11 @@ const ModulesNames = [_][]const u8{
     "4_testing",
     "5_numbers",
     "6_arrays",
+    "7_vectors",
+    "8_pointers",
+    "9_alignment",
+    "10_structs",
+    "11_structs_ext",
 };
 
 pub fn build(b: *std.Build) void {
