@@ -12,6 +12,15 @@ const ModulesNames = [_][]const u8{
     "9_alignment",
     "10_structs",
     "11_structs_ext",
+    "12_structs_anonymous",
+    "13_enums",
+    "14_unions",
+    "15_switch",
+    "16_while",
+    "17_for",
+    "18_defer",
+    "19_functions",
+    "20_errors",
 };
 
 pub fn build(b: *std.Build) void {

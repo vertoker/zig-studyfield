@@ -58,7 +58,7 @@ test "thread local storage" {
 
 threadlocal var x: i32 = 1234;
 fn testTls() void {
-    std.testing.assert(x == 1234);
+    std.debug.assert(x == 1234);
     x += 1;
-    std.testing.assert(x == 1235);
+    std.debug.assert(x == 1235);
 }

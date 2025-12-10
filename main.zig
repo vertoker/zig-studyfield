@@ -9,6 +9,15 @@ const pointersModule = @import("modules/8_pointers.zig");
 const alignmentModule = @import("modules/9_alignment.zig");
 const structsModule = @import("modules/10_structs.zig");
 const structsExtModule = @import("modules/11_structs_ext.zig");
+const structsAnonymousModule = @import("modules/12_structs_anonymous.zig");
+const enumsModule = @import("modules/13_enums.zig");
+const unionsModule = @import("modules/14_unions.zig");
+const switchModule = @import("modules/15_switch.zig");
+const whileModule = @import("modules/16_while.zig");
+const forModule = @import("modules/17_for.zig");
+const deferModule = @import("modules/18_defer.zig");
+const functionsModule = @import("modules/19_functions.zig");
+const errorsModule = @import("modules/20_errors.zig");
 
 pub fn main() void {
     printingModule.printTopic();
@@ -22,4 +31,13 @@ pub fn main() void {
     alignmentModule.printTopic();
     structsModule.printTopic();
     structsExtModule.printTopic();
+    structsAnonymousModule.printTopic();
+    enumsModule.printTopic();
+    unionsModule.printTopic();
+    switchModule.printTopic();
+    whileModule.printTopic();
+    forModule.printTopic();
+    deferModule.printTopic();
+    functionsModule.printTopic();
+    errorsModule.printTopic();
 }
