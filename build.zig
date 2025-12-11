@@ -21,6 +21,8 @@ const ModulesNames = [_][]const u8{
     "18_defer",
     "19_functions",
     "20_errors",
+    "21_optionals",
+    "22_casting",
 };
 
 pub fn build(b: *std.Build) void {

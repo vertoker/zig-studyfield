@@ -18,6 +18,8 @@ const forModule = @import("modules/17_for.zig");
 const deferModule = @import("modules/18_defer.zig");
 const functionsModule = @import("modules/19_functions.zig");
 const errorsModule = @import("modules/20_errors.zig");
+const optionalsModule = @import("modules/21_optionals.zig");
+const castingModule = @import("modules/22_casting.zig");
 
 pub fn main() void {
     printingModule.printTopic();
@@ -40,4 +42,6 @@ pub fn main() void {
     deferModule.printTopic();
     functionsModule.printTopic();
     errorsModule.printTopic();
+    optionalsModule.printTopic();
+    castingModule.printTopic();
 }
