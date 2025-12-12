@@ -1,5 +1,8 @@
 .zig-cache/
 zig-out/
 
+.idea/
+.vs/
+
 *.exe
 *.pdb
