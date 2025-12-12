@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Build Run ReleastSafe" type="ZIGBRAINS_BUILD" factoryName="ZIGBRAINS_BUILD" singleton="false">
+    <ZigBrainsOption name="workingDirectory" value="D:\Projects\Zig\documentation-testfield" />
+    <envs />
+    <ZigBrainsOption name="buildSteps" value="" />
+    <ZigBrainsOption name="compilerArgs" value="run --release=safe" />
+    <ZigBrainsOption name="debugBuildSteps" value="" />
+    <ZigBrainsOption name="debugCompilerArgs" value="" />
+    <ZigBrainsOption name="exePath" value="" />
+    <ZigBrainsOption name="exeArgs" value="" />
+    <method v="2" />
+  </configuration>
+</component>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BuildScanner">
+    <option name="projects">
+      <list><![CDATA[{
+  "name": null,
+  "version": null,
+  "path": "D:\\Projects\\Zig\\documentation-testfield",
+  "steps": [
+    {
+      "name": "install",
+      "description": "Copy build artifacts to prefix path",
+      "kind": "install_artifact"
+    },
+    {
+      "name": "uninstall",
+      "description": "Remove build artifacts from prefix path",
+      "kind": "uninstall"
+    },
+    {
+      "name": "run",
+      "description": "Run the app",
+      "kind": "run"
+    },
+    {
+      "name": "test",
+      "description": "Run tests",
+      "kind": "run"
+    },
+    {
+      "name": "debug",
+      "description": "run the tests under lldb",
+      "kind": "run"
+    }
+  ],
+  "modules": [
+    {
+      "root": "modules\\01_printing.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\02_strings.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\03_undefined.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\04_testing.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\05_numbers.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\06_arrays.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\07_vectors.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\08_pointers.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\09_alignment.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\10_structs.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\11_structs_ext.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\12_structs_anonymous.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\13_enums.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\14_unions.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\15_switch.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\16_while.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\17_for.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\18_defer.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\19_functions.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\20_errors.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\21_optionals.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\22_casting.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\23_comptime.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "modules\\24_allocators.zig",
+      "public": true,
+      "imports": []
+    },
+    {
+      "root": "main.zig",
+      "public": false,
+      "imports": [
+        {
+          "name": "01_printing",
+          "owner": 0,
+          "module": 0
+        },
+        {
+          "name": "02_strings",
+          "owner": 0,
+          "module": 1
+        },
+        {
+          "name": "03_undefined",
+          "owner": 0,
+          "module": 2
+        },
+        {
+          "name": "04_testing",
+          "owner": 0,
+          "module": 3
+        },
+        {
+          "name": "05_numbers",
+          "owner": 0,
+          "module": 4
+        },
+        {
+          "name": "06_arrays",
+          "owner": 0,
+          "module": 5
+        },
+        {
+          "name": "07_vectors",
+          "owner": 0,
+          "module": 6
+        },
+        {
+          "name": "08_pointers",
+          "owner": 0,
+          "module": 7
+        },
+        {
+          "name": "09_alignment",
+          "owner": 0,
+          "module": 8
+        },
+        {
+          "name": "10_structs",
+          "owner": 0,
+          "module": 9
+        },
+        {
+          "name": "11_structs_ext",
+          "owner": 0,
+          "module": 10
+        },
+        {
+          "name": "12_structs_anonymous",
+          "owner": 0,
+          "module": 11
+        },
+        {
+          "name": "13_enums",
+          "owner": 0,
+          "module": 12
+        },
+        {
+          "name": "14_unions",
+          "owner": 0,
+          "module": 13
+        },
+        {
+          "name": "15_switch",
+          "owner": 0,
+          "module": 14
+        },
+        {
+          "name": "16_while",
+          "owner": 0,
+          "module": 15
+        },
+        {
+          "name": "17_for",
+          "owner": 0,
+          "module": 16
+        },
+        {
+          "name": "18_defer",
+          "owner": 0,
+          "module": 17
+        },
+        {
+          "name": "19_functions",
+          "owner": 0,
+          "module": 18
+        },
+        {
+          "name": "20_errors",
+          "owner": 0,
+          "module": 19
+        },
+        {
+          "name": "21_optionals",
+          "owner": 0,
+          "module": 20
+        },
+        {
+          "name": "22_casting",
+          "owner": 0,
+          "module": 21
+        },
+        {
+          "name": "23_comptime",
+          "owner": 0,
+          "module": 22
+        },
+        {
+          "name": "24_allocators",
+          "owner": 0,
+          "module": 23
+        }
+      ]
+    }
+  ],
+  "dependencies": []
+}]]></list>
+    </option>
+  </component>
+  <component name="ZigToolchain" toolchain="10058d2c-83a2-4c36-ba83-4fa3c7349c43" />
+</project>

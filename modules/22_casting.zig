@@ -6,7 +6,9 @@ const std = @import("std");
 // 3. Peer Type Resolution -
 
 pub fn printTopic() void {
-    // way 1 - type coercion
+
+    // Way 1 - type coercion
+
     const a: u8 = 1;
     const b: u16 = a;
     const c: u32 = b;
@@ -23,8 +25,14 @@ pub fn printTopic() void {
     const b4: *const i32 = &a4;
     _ = b4;
 
-    // arrays, slices, pointers
+    // check 08_pointers.zig file, you find 4 types of pointers
+    // you can cast downsizing (4 to 3, 3 to 2, 2 to 1), but not uprizing (1 to 2, 2 to 3, 3 to 4)
 
+    const x1: []const u8 = "hello";
+    const x2: []const u8 = &[5]u8{ 'h', 'e', 'l', 'l', 111 };
+    std.debug.assert(std.mem.eql(u8, x1, x2));
+
+    // undefined can be coerced to any type
 }
 
 fn foo(b2: u16) void {

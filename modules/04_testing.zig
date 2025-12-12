@@ -31,22 +31,6 @@ test "expectError demo" {
     try std.testing.expectError(expected_error, actual_error_union);
 }
 
-// TODO move to future allocator module
-test "using an allocator" {
-    var buffer: [100]u8 = undefined;
-    var fba = std.heap.FixedBufferAllocator.init(&buffer);
-    const allocator = fba.allocator();
-    const result = try concat(allocator, "foo", "bar");
-    try std.testing.expect(std.mem.eql(u8, "foobar", result));
-}
-
-fn concat(allocator: std.mem.Allocator, a: []const u8, b: []const u8) ![]u8 {
-    const result = try allocator.alloc(u8, a.len + b.len);
-    @memcpy(result[0..a.len], a);
-    @memcpy(result[a.len..], b);
-    return result;
-}
-
 // TODO move to future concurrency module
 test "thread local storage" {
     const thread1 = try std.Thread.spawn(.{}, testTls, .{});

@@ -1,4 +1,5 @@
 const std = @import("std");
+const builtin = @import("builtin");
 
 const ModulesNames = [_][]const u8{
     "01_printing",
@@ -23,10 +24,21 @@ const ModulesNames = [_][]const u8{
     "20_errors",
     "21_optionals",
     "22_casting",
+    "23_comptime",
+    "24_allocators",
 };
 
 pub fn build(b: *std.Build) void {
+    // const target_zig_version = std.SemanticVersion.parse("0.15.2") catch |err| switch (err) {
+    //    else => {
+    //        @compileLog("{t}", .{err});
+    //        @compileError("Can't parse target_zig_version");
+    //    },
+    // };
     const appName = "documentation_testfield";
+
+    //if (builtin.zig_version.order(target_zig_version) == .lt)
+    //    @compileError("builtin.zig_version can't be less than target_zig_version");
 
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
@@ -89,6 +101,21 @@ pub fn build(b: *std.Build) void {
     // Tests
     const run_exe_tests = b.addRunArtifact(exe_tests);
     test_step.dependOn(&run_exe_tests.step);
+
+    // Debugging Tests
+    // https://ziggit.dev/t/zig-debugging-with-lldb/3931/7
+
+    const lldb = b.addSystemCommand(&.{
+        "lldb",
+        // add lldb flags before --
+        "--",
+    });
+    // appends the unit_tests executable path to the lldb command line
+    lldb.addArtifactArg(exe_tests);
+    // lldb.addArg can add arguments after the executable path
+
+    const lldb_step = b.step("debug", "run the tests under lldb");
+    lldb_step.dependOn(&lldb.step);
 }
 
 fn addModule(name: []const u8, path: []const u8, b: *std.Build, target: ?std.Build.ResolvedTarget, optimize: ?std.builtin.OptimizeMode) *std.Build.Module {

@@ -20,6 +20,8 @@ const functionsModule = @import("modules/19_functions.zig");
 const errorsModule = @import("modules/20_errors.zig");
 const optionalsModule = @import("modules/21_optionals.zig");
 const castingModule = @import("modules/22_casting.zig");
+const comptimeModule = @import("modules/23_comptime.zig");
+const allocatorsModule = @import("modules/24_allocators.zig");
 
 pub fn main() void {
     printingModule.printTopic();
@@ -44,4 +46,6 @@ pub fn main() void {
     errorsModule.printTopic();
     optionalsModule.printTopic();
     castingModule.printTopic();
+    comptimeModule.printTopic();
+    allocatorsModule.printTopic();
 }
