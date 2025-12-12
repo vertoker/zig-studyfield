@@ -29,22 +29,12 @@ const ModulesNames = [_][]const u8{
 };
 
 pub fn build(b: *std.Build) void {
-    // const target_zig_version = std.SemanticVersion.parse("0.15.2") catch |err| switch (err) {
-    //    else => {
-    //        @compileLog("{t}", .{err});
-    //        @compileError("Can't parse target_zig_version");
-    //    },
-    // };
     const appName = "documentation_testfield";
-
-    //if (builtin.zig_version.order(target_zig_version) == .lt)
-    //    @compileError("builtin.zig_version can't be less than target_zig_version");
+    const run_step = b.step("run", "Run the app");
+    const test_step = b.step("test", "Run tests");
 
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
-
-    const run_step = b.step("run", "Run the app");
-    const test_step = b.step("test", "Run tests");
 
     //var modules: [ModulesNames.len]*std.Build.Module = &.{};
     var imports: [ModulesNames.len]std.Build.Module.Import = undefined;

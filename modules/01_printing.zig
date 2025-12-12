@@ -4,6 +4,7 @@ const std = @import("std");
 const print = std.debug.print;
 const os = std.os;
 const assert = std.debug.assert;
+const builtin = @import("builtin");
 
 /// Main function (doc comment)
 pub fn printTopic() void {
@@ -34,4 +35,7 @@ pub fn printTopic() void {
         number_or_error = 1234;
         print("Optional 4, type={}, value={!}\n", .{ @TypeOf(number_or_error), number_or_error });
     }
+
+    const target_zig_version = comptime std.SemanticVersion.parse("0.15.3") catch unreachable;
+    print("{}.{}.{} ", .{target_zig_version.major, target_zig_version.minor, target_zig_version.patch});
 }
