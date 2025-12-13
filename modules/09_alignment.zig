@@ -1,6 +1,6 @@
 const std = @import("std");
 
-pub fn printTopic() void {
+pub fn main() void {
     const x: i32 = 1234;
     const align_of_i32 = @alignOf(@TypeOf(x));
     std.debug.print("{}, ", .{align_of_i32});

@@ -27,7 +27,7 @@ fn eql(a: anytype, b: anytype) !bool {
 // you can merge error sets to one
 const AllError = FileOpenError || AllocatorError || EqlError;
 
-pub fn printTopic() void {
+pub fn main() void {
     var err = foo(AllocatorError.OutOfMemory);
     std.debug.assert(err == FileOpenError.OutOfMemory);
 

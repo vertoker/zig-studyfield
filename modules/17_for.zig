@@ -1,6 +1,6 @@
 const std = @import("std");
 
-pub fn printTopic() void {
+pub fn main() void {
     // nested break
     var count: usize = 0;
     outer: for (1..6) |_| {

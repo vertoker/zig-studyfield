@@ -1,7 +1,7 @@
 const std = @import("std");
 const assert = std.debug.assert;
 
-pub fn printTopic() void {
+pub fn main() void {
     const all_two = [_]u16{2} ** 10;
     std.debug.print("{any}\n", .{all_two});
 

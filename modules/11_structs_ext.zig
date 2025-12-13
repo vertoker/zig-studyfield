@@ -41,7 +41,7 @@ const Point3 = packed struct(u64) {
 };
 
 // https://ziglang.org/documentation/0.15.2/#toc-extern-struct
-pub fn printTopic() void {
+pub fn main() void {
     std.debug.assert(@sizeOf(Foo) == 2);
     std.debug.assert(@sizeOf(Foo2) == 4);
     std.debug.print("packed={}, regular={}, ", .{ @sizeOf(Foo), @sizeOf(Foo2) });

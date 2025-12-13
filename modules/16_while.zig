@@ -1,6 +1,6 @@
 const std = @import("std");
 
-pub fn printTopic() void {
+pub fn main() void {
     // nested break
     outer: while (true) {
         while (true) {

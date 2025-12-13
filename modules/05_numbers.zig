@@ -20,7 +20,7 @@ export fn foo_optimized(x: f64) f64 {
     return x + big - big;
 }
 
-pub fn printTopic() void {
+pub fn main() void {
     const value: ?u32 = 5678;
     assert(value.? == 5678);
     //value orelse unreachable = 5678;

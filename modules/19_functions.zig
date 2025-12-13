@@ -35,7 +35,7 @@ inline fn foo(a: i32, b: i32) i32 {
 
 // in functions: you can't overload by names, you can't set default compile-time values for params
 
-pub fn printTopic() void {
+pub fn main() void {
     std.debug.assert(@typeInfo(@TypeOf(passByValue)).@"fn".params[0].type == Point);
     std.debug.assert(@typeInfo(@TypeOf(passAnytype)).@"fn".is_generic);
     std.debug.print("{}, ", .{@typeInfo(@TypeOf(passAnytype)).@"fn".is_generic});

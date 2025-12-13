@@ -1,6 +1,6 @@
 const std = @import("std");
 
-pub fn printTopic() void {
+pub fn main() void {
     const Foo = struct {};
     std.debug.print("variable: {s}\n", .{@typeName(Foo)});
     std.debug.print("anonymous: {s}\n", .{@typeName(struct {})});

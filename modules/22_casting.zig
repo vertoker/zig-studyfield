@@ -5,7 +5,7 @@ const std = @import("std");
 // 2. Explicit cast - cast via buildin functions @...Cast, like @bitCast @alignCast or @ptrCast
 // 3. Peer Type Resolution -
 
-pub fn printTopic() void {
+pub fn main() void {
 
     // Way 1 - type coercion
 

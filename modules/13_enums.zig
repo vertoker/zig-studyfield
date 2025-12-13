@@ -41,7 +41,7 @@ const Suit = enum {
 // enum by default is not C-compatible, provide C integer tag type
 const Foo = enum(c_int) { a, b, c }; // this will work with C
 
-pub fn printTopic() void {
+pub fn main() void {
     std.debug.assert(@intFromEnum(Value.one) == 1);
 
     const p = Suit.spades;

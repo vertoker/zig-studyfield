@@ -1,6 +1,6 @@
 const std = @import("std");
 
-pub fn printTopic() void {
+pub fn main() void {
     const a = @Vector(4, i32);
     const b = @Vector(4, i32){ 1, 2, 3, 4 };
 

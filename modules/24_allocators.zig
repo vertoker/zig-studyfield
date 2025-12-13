@@ -1,9 +1,9 @@
 const std = @import("std");
 
-pub fn printTopic() void {
+pub fn main() void {
     // https://ziglang.org/documentation/0.15.2/#toc-Choosing-an-Allocator
 
-    // Fixed Buffer Allocatior
+    // Fixed Buffer Allocator
     var buffer: [128]u8 = undefined; // no need to deallocate this
     var fba = std.heap.FixedBufferAllocator.init(&buffer);
     const allocator = fba.allocator();

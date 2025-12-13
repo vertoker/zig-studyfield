@@ -18,7 +18,7 @@ fn isFieldOptional(comptime T: type, field_index: usize) bool {
 
 const Struct1 = struct { a: u32, b: ?u32 };
 
-pub fn printTopic() void {
+pub fn main() void {
     const a: u64 = 10;
     const zz: u64 = 103;
 

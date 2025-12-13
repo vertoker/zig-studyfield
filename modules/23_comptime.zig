@@ -17,7 +17,7 @@ fn max(comptime T: type, a: T, b: T) T {
     return if (a > b) a else b;
 }
 
-pub fn printTopic() void {
+pub fn main() void {
     const m = max(u64, 0, 1);
     _ = m;
 

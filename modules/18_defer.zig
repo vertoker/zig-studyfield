@@ -1,6 +1,6 @@
 const std = @import("std");
 
-pub fn printTopic() void {
+pub fn main() void {
     std.debug.assert(defer1() == 3);
     defer2();
 }

@@ -1,7 +1,7 @@
 const std = @import("std");
 const builtin = @import("builtin");
 
-pub fn printTopic() void {
+pub fn main() void {
     std.debug.print("Is a test build? - {}\n", .{builtin.is_test});
 }
 // zig build test --summary all

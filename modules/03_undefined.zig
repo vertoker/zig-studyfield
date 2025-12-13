@@ -1,6 +1,6 @@
 const print = @import("std").debug.print;
 
-pub fn printTopic() void {
+pub fn main() void {
     var x: u32 = undefined;
     var y: u32 = undefined;
     var z: u32 = undefined;

@@ -1,6 +1,6 @@
 const std = @import("std");
 
-pub fn printTopic() void {
+pub fn main() void {
     // Here's 4 types of pointer
     // 1. *T - pointer, can be used for everything, like in C
     // 2. [*]T - pointer to unknown size array

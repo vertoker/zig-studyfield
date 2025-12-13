@@ -33,7 +33,7 @@ const PackedUnion = packed union {};
 // opaque is a type with unknown (non-zero) size and alignment. This used for safe C integration
 const What = opaque {};
 
-pub fn printTopic() void {
+pub fn main() void {
     var payload: Payload = .{ .float = 0.0 };
     std.debug.print("float={}, ", .{payload.float});
     // payload.int = 1234; // you can't change it because "Only one field can be active at a time"

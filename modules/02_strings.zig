@@ -10,7 +10,7 @@ const c = @cImport({
 // https://ziggit.dev/t/blog-understanding-how-zig-and-c-interact/6733
 pub extern fn set_console_output_cp() void;
 
-pub fn printTopic() void {
+pub fn main() void {
     const bytes = "Hello";
     print("{}, ", .{@TypeOf(bytes)});
     print("{d}, ", .{bytes.len});

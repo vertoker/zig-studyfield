@@ -2,33 +2,57 @@ const std = @import("std");
 const builtin = @import("builtin");
 
 const ModulesNames = [_][]const u8{
-    "01_printing",
-    "02_strings",
-    "03_undefined",
-    "04_testing",
-    "05_numbers",
-    "06_arrays",
-    "07_vectors",
-    "08_pointers",
-    "09_alignment",
-    "10_structs",
-    "11_structs_ext",
-    "12_structs_anonymous",
-    "13_enums",
-    "14_unions",
-    "15_switch",
-    "16_while",
-    "17_for",
-    "18_defer",
-    "19_functions",
-    "20_errors",
-    "21_optionals",
-    "22_casting",
-    "23_comptime",
-    "24_allocators",
+    "modules/01_printing",
+    "modules/02_strings",
+    "modules/03_undefined",
+    "modules/04_testing",
+    "modules/05_numbers",
+    "modules/06_arrays",
+    "modules/07_vectors",
+    "modules/08_pointers",
+    "modules/09_alignment",
+    "modules/10_structs",
+    "modules/11_structs_ext",
+    "modules/12_structs_anonymous",
+    "modules/13_enums",
+    "modules/14_unions",
+    "modules/15_switch",
+    "modules/16_while",
+    "modules/17_for",
+    "modules/18_defer",
+    "modules/19_functions",
+    "modules/20_errors",
+    "modules/21_optionals",
+    "modules/22_casting",
+    "modules/23_comptime",
+    "modules/24_allocators",
+    "patterns/alloc_is_not_init",
 };
 
+const zig_version = std.SemanticVersion{
+    .major = 0,
+    .minor = 15,
+    .patch = 2,
+};
+
+comptime {
+    // Compare versions while allowing different pre/patch metadata.
+    const zig_version_eq = zig_version.major == builtin.zig_version.major and
+        zig_version.minor == builtin.zig_version.minor and
+        zig_version.patch == builtin.zig_version.patch;
+
+    if (!zig_version_eq) {
+        @compileError(std.fmt.comptimePrint(
+            "unsupported zig version: expected {f}, found {f}",
+            .{ zig_version, builtin.zig_version },
+        ));
+    }
+}
+
 pub fn build(b: *std.Build) void {
+    // A compile error stack trace of 10 is arbitrary in size but helps with debugging (TigerBeetle)
+    b.reference_trace = 10;
+
     const appName = "documentation_testfield";
     const run_step = b.step("run", "Run the app");
     const test_step = b.step("test", "Run tests");
@@ -43,8 +67,13 @@ pub fn build(b: *std.Build) void {
         var buffer: [100]u8 = undefined;
         const moduleName = ModulesNames[i];
 
-        const path = std.fmt.bufPrint(&buffer, "modules/{s}.zig", .{moduleName}) catch unreachable;
-        const module = addModule(moduleName, path, b, target, optimize);
+        const path = std.fmt.bufPrint(&buffer, "{s}.zig", .{moduleName}) catch unreachable;
+        const module = addModule(b, .{
+            .name = moduleName,
+            .path = path,
+            .target = target,
+            .optimize = optimize
+        });
 
         module.addCSourceFiles(.{
             .root = b.path(C_ROOT_DIR),
@@ -108,12 +137,18 @@ pub fn build(b: *std.Build) void {
     lldb_step.dependOn(&lldb.step);
 }
 
-fn addModule(name: []const u8, path: []const u8, b: *std.Build, target: ?std.Build.ResolvedTarget, optimize: ?std.builtin.OptimizeMode) *std.Build.Module {
-    const mod = b.addModule(name, .{
+// useful pattern - create anonymous structs to organize all options data
+fn addModule(b: *std.Build, options: struct {
+    name: []const u8,
+    path: []const u8,
+    target: ?std.Build.ResolvedTarget,
+    optimize: ?std.builtin.OptimizeMode
+}) *std.Build.Module {
+    const mod = b.addModule(options.name, .{
         .link_libc = true,
-        .root_source_file = b.path(path),
-        .target = target,
-        .optimize = optimize,
+        .root_source_file = b.path(options.path),
+        .target = options.target,
+        .optimize = options.optimize,
     });
     return mod;
 }

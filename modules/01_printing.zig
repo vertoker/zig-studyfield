@@ -7,7 +7,7 @@ const assert = std.debug.assert;
 const builtin = @import("builtin");
 
 /// Main function (doc comment)
-pub fn printTopic() void {
+pub fn main() void {
     // Only 1 line comments, without /* */
     print("Hello, {s}!\n", .{"World"});
 

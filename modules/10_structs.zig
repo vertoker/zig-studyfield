@@ -67,7 +67,7 @@ const Foo = struct {
     };
 };
 
-pub fn printTopic() void {
+pub fn main() void {
     std.debug.assert(Empty.PI == 3.14);
 
     const nothing: Empty = .{};
